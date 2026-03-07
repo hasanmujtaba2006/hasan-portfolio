@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Spline from '@splinetool/react-spline';
+import { Analytics } from '@vercel/analytics/react';
 
 // --- Custom Typewriter Component for Terminal Effect ---
 const TypewriterText = ({ text }) => {
@@ -338,6 +339,7 @@ const App = () => {
         <p>Built by Hasan Mujtaba. &copy; {new Date().getFullYear()}</p>
       </footer>
 
+      <Analytics />
     </div>
   );
 };
