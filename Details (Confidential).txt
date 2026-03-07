@@ -1,0 +1,3 @@
+npm run dev  //for making webpage live
+
+Spline 3D Design : https://prod.spline.design/MFnQuE1jhBVwXknr/scene.splinecode
