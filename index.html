@@ -104,8 +104,28 @@
     </script>
   </head>
   <body>
-    <!-- Fallback semantic content for search engine bots before React mounts -->
+    <!-- Minimalist dark-theme preloader while the 3D bundle initializes -->
     <div id="root">
+      <div style="min-height: 100vh; background-color: #0a0a0a; display: flex; align-items: center; justify-content: center;">
+        <style>
+          @keyframes hm-pulse {
+            0%, 100% { opacity: 0.35; transform: scale(0.97); }
+            50% { opacity: 1; transform: scale(1.03); filter: drop-shadow(0 0 16px rgba(52, 211, 153, 0.7)); }
+          }
+          .hm-loader {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: #34d399;
+            animation: hm-pulse 1.8s ease-in-out infinite;
+          }
+        </style>
+        <div class="hm-loader">HM.</div>
+      </div>
+    </div>
+    <!-- Semantic fallback content for non-JS scrapers & search engine bots -->
+    <noscript>
       <header>
         <h1>Hasan Mujtaba — Full-Stack Developer & IoT Engineer</h1>
         <p>Software developer specializing in Python, full-stack web architecture, and hardware integration.</p>
@@ -141,8 +161,6 @@
           <p>LinkedIn: <a href="https://www.linkedin.com/in/hasan-mujtaba-55b87037b/">Hasan Mujtaba</a></p>
         </section>
       </main>
-    </div>
-    <noscript>
       <p>This interactive 3D portfolio is best viewed with JavaScript enabled. Learn more about Hasan Mujtaba at <a href="https://github.com/hasanmujtaba2006">GitHub</a> or <a href="https://www.linkedin.com/in/hasan-mujtaba-55b87037b/">LinkedIn</a>.</p>
     </noscript>
     <script type="module" src="/src/main.jsx"></script>
