@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const DEFAULT_PIN = "hasan2026";
+const ADMIN_PIN = "338824";
 const GITHUB_REPO = "hasanmujtaba2006/hasan-portfolio";
 const FILE_PATH = "src/data/projects.json";
 
@@ -30,8 +30,7 @@ export default function AdminModal({ isOpen, onClose, projects, onSaveProjects, 
 
   const handlePinSubmit = (e) => {
     e.preventDefault();
-    const storedPin = localStorage.getItem("hasan_admin_pin") || DEFAULT_PIN;
-    if (enteredPin.trim() === storedPin) {
+    if (enteredPin.trim() === ADMIN_PIN) {
       setIsAuthenticated(true);
       setPinError("");
       setEnteredPin("");
@@ -223,7 +222,7 @@ export default function AdminModal({ isOpen, onClose, projects, onSaveProjects, 
               <div className="w-full max-w-xs space-y-3">
                 <input
                   type="password"
-                  placeholder="Enter PIN (Default: hasan2026)"
+                  placeholder="Enter Secret PIN"
                   value={enteredPin}
                   onChange={(e) => setEnteredPin(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-center font-mono tracking-widest text-lg"
