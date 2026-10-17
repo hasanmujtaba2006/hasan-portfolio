@@ -37,6 +37,6 @@
     "video": "",
     "typewriterText": "> Booting physical scanner module...\n> Processing page geometry...\n> OCR Text Extraction: 100%\n> Converting to .epub format...\n> Saved to Personal Vault.",
     "github": "https://github.com/hasanmujtaba2006/Scan2eBook-AI.git",
-    "demo": "https://scan2e-book-ai.vercel.app/"
+    "demo": "https://kutubify.vercel.app/"
   }
 ]
