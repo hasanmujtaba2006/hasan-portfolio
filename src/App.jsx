@@ -120,7 +120,7 @@ const App = () => {
             className="flex flex-col items-start"
           >
             <p className="text-emerald-600 font-semibold tracking-wide mb-3">
-              Assalam-u-alaikum, my name is
+              Hi, my name is
             </p>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4 text-slate-900 drop-shadow-xs">
               Hasan Mujtaba.
