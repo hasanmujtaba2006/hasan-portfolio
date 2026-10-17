@@ -67,40 +67,16 @@ const myProjects = [
 ];
 
 const App = () => {
-  // --- Custom Cursor State ---
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-900 overflow-hidden font-sans scroll-smooth md:cursor-none">
-      
-      {/* --- Custom Glowing Cursor --- */}
-      <motion.div
-        className="fixed top-0 left-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none z-0 hidden md:block"
-        animate={{ x: mousePosition.x - 200, y: mousePosition.y - 200 }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.6 }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-emerald-600 rounded-full pointer-events-none z-[100] shadow-[0_0_12px_2px_rgba(5,150,105,0.4)] hidden md:block"
-        animate={{ x: mousePosition.x - 6, y: mousePosition.y - 6 }}
-        transition={{ type: "spring", stiffness: 1000, damping: 40 }}
-      />
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 overflow-hidden font-sans scroll-smooth">
 
       {/* Navigation Bar */}
       <nav aria-label="Main Navigation" className="fixed top-0 w-full p-6 flex justify-between items-center z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 shadow-xs">
-        <a href="#" aria-label="Hasan Mujtaba Home" className="text-2xl font-bold tracking-tighter text-emerald-600 md:cursor-none">HM.</a>
+        <a href="#" aria-label="Hasan Mujtaba Home" className="text-2xl font-bold tracking-tighter text-emerald-600">HM.</a>
         <div className="space-x-8 text-sm font-medium text-slate-600 hidden md:block">
-          <a href="#about" className="hover:text-emerald-600 transition-colors md:cursor-none">About</a>
-          <a href="#projects" className="hover:text-emerald-600 transition-colors md:cursor-none">Projects</a>
-          <a href="#contact" className="hover:text-emerald-600 transition-colors md:cursor-none">Contact</a>
+          <a href="#about" className="hover:text-emerald-600 transition-colors">About</a>
+          <a href="#projects" className="hover:text-emerald-600 transition-colors">Projects</a>
+          <a href="#contact" className="hover:text-emerald-600 transition-colors">Contact</a>
         </div>
       </nav>
 
@@ -109,7 +85,7 @@ const App = () => {
         
         <div className="relative z-10 w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center pointer-events-none">
           
-          <div className="w-full h-[400px] md:h-[600px] relative pointer-events-auto z-0 opacity-95 md:cursor-none">
+          <div className="w-full h-[400px] md:h-[600px] relative pointer-events-auto z-0 opacity-95">
              <Spline scene="https://prod.spline.design/MFnQuE1jhBVwXknr/scene.splinecode" />
           </div>
 
@@ -132,7 +108,7 @@ const App = () => {
               I'm a software developer with a strong foundation in Python, full-stack architecture, and hardware integration. Currently focused on building my startup and exploring Data Science.
             </p>
             
-            <a href="#projects" className="pointer-events-auto px-8 py-3 bg-white/90 backdrop-blur-md border-2 border-emerald-600 text-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white shadow-xs hover:shadow-md transition-all duration-300 inline-block font-semibold md:cursor-none">
+            <a href="#projects" className="pointer-events-auto px-8 py-3 bg-white/90 backdrop-blur-md border-2 border-emerald-600 text-emerald-600 rounded-md hover:bg-emerald-600 hover:text-white shadow-xs hover:shadow-md transition-all duration-300 inline-block font-semibold">
               Check out my projects
             </a>
           </motion.div>
@@ -192,7 +168,7 @@ const App = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="relative group md:cursor-none w-3/4 mx-auto md:w-full max-w-md"
+              className="relative group w-3/4 mx-auto md:w-full max-w-md"
             >
               <div className="absolute inset-0 border-2 border-emerald-600 rounded-xl translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2 -z-10"></div>
               
@@ -237,7 +213,7 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, amount: 0.1 }}
-                className="rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col group hover:border-emerald-500/60 hover:shadow-lg transition-all duration-300 md:cursor-none overflow-hidden"
+                className="rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col group hover:border-emerald-500/60 hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 {/* Media Container: Checks for Video FIRST, then defaults to Terminal Typewriter */}
                 <div className="w-full h-56 bg-slate-900 relative overflow-hidden border-b border-slate-100">
@@ -289,13 +265,13 @@ const App = () => {
                   {/* Links Section */}
                   <div className="mt-8 flex gap-6">
                     {project.github !== "#" && project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub`} className="text-sm font-medium text-slate-600 hover:text-emerald-600 flex items-center gap-2 transition-colors md:cursor-none z-20 pointer-events-auto">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source code on GitHub`} className="text-sm font-medium text-slate-600 hover:text-emerald-600 flex items-center gap-2 transition-colors z-20 pointer-events-auto">
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" /></svg>
                         Code
                       </a>
                     )}
                     {project.demo !== "#" && project.demo && (
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`} className="text-sm font-medium text-slate-600 hover:text-emerald-600 flex items-center gap-2 transition-colors md:cursor-none z-20 pointer-events-auto">
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`} className="text-sm font-medium text-slate-600 hover:text-emerald-600 flex items-center gap-2 transition-colors z-20 pointer-events-auto">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                         Live Demo
                       </a>
@@ -325,7 +301,7 @@ const App = () => {
             Whether you have a question about my IoT builds, want to discuss a tech startup idea, or just want to say hi, my inbox is always open. I'll try my best to get back to you!
           </p>
           
-          <a href="mailto:hasanmujtaba.q@gmail.com" aria-label="Send email to Hasan Mujtaba" className="px-8 py-4 bg-emerald-600 text-white font-bold rounded-md hover:bg-emerald-700 shadow-md hover:shadow-lg transition-all duration-300 inline-block md:cursor-none z-20 pointer-events-auto">
+          <a href="mailto:hasanmujtaba.q@gmail.com" aria-label="Send email to Hasan Mujtaba" className="px-8 py-4 bg-emerald-600 text-white font-bold rounded-md hover:bg-emerald-700 shadow-md hover:shadow-lg transition-all duration-300 inline-block z-20 pointer-events-auto">
             Say Hello
           </a>
         </motion.div>
@@ -334,10 +310,10 @@ const App = () => {
       {/* Footer */}
       <footer className="relative z-10 py-8 text-center text-slate-500 text-sm font-mono bg-[#f8fafc] border-t border-slate-200">
         <div className="flex justify-center space-x-6 mb-4">
-          <a href="https://github.com/hasanmujtaba2006" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on GitHub" className="text-slate-600 hover:text-emerald-600 transition-colors md:cursor-none pointer-events-auto">GitHub</a>
-          <a href="https://www.linkedin.com/in/hasan-mujtaba-55b87037b/" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on LinkedIn" className="text-slate-600 hover:text-emerald-600 transition-colors md:cursor-none pointer-events-auto">LinkedIn</a>
-          <a href="https://t.me/Hasanmujtaba12" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on Telegram" className="text-slate-600 hover:text-emerald-600 transition-colors md:cursor-none pointer-events-auto">Telegram</a>
-          <a href="https://discordapp.com/users/hasan_0249" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on Discord" className="text-slate-600 hover:text-emerald-600 transition-colors md:cursor-none pointer-events-auto">Discord</a>
+          <a href="https://github.com/hasanmujtaba2006" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on GitHub" className="text-slate-600 hover:text-emerald-600 transition-colors pointer-events-auto">GitHub</a>
+          <a href="https://www.linkedin.com/in/hasan-mujtaba-55b87037b/" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on LinkedIn" className="text-slate-600 hover:text-emerald-600 transition-colors pointer-events-auto">LinkedIn</a>
+          <a href="https://t.me/Hasanmujtaba12" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on Telegram" className="text-slate-600 hover:text-emerald-600 transition-colors pointer-events-auto">Telegram</a>
+          <a href="https://discordapp.com/users/hasan_0249" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on Discord" className="text-slate-600 hover:text-emerald-600 transition-colors pointer-events-auto">Discord</a>
         </div>
         <p>Built by Hasan Mujtaba. &copy; {new Date().getFullYear()}</p>
       </footer>
