@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Spline from '@splinetool/react-spline';
+import initialProjects from './data/projects.json';
+import AdminModal from './components/AdminModal.jsx';
 
 // --- Custom Typewriter Component for Terminal Effect ---
 const TypewriterText = ({ text }) => {
@@ -21,62 +23,69 @@ const TypewriterText = ({ text }) => {
   return (
     <div className="whitespace-pre-wrap leading-relaxed">
       {displayedText}
-      <span className="animate-pulse font-bold text-emerald-300">_</span>
+      <span className="animate-pulse font-bold text-emerald-400">_</span>
     </div>
   );
 };
 
-// --- Project Data ---
-const myProjects = [
-  {
-    title: "IoT Smart Parking System",
-    tech: "C++ / Microcontrollers / IoT Sensors",
-    description: "A highly scalable smart parking solution integrating IoT sensors and microcontrollers to monitor and manage real-time parking space availability.",
-    video: "/parking.mp4", // KEEP YOUR VIDEO LINK HERE! 
-    typewriterText: "", 
-    github: "",
-    demo: "#" 
-  },
-  {
-    title: "Madarsa Gate Scanner",
-    tech: "Python / Flask / Google Sheets API",
-    description: "An automated entry logging system built with Python and Flask. It uses barcode scanning to instantly log student entries into a centralized Google Sheet.",
-    video: "", // Leave blank to trigger the typing effect
-    typewriterText: "> Initializing entry logs...\n> Scanning student barcode...\n> ID Verified.\n> Access Granted.\n> Data pushed to Google Sheets successfully.",
-    github: "https://github.com/gmqazi1036/jamiturraza_main_gate.git",
-    demo: "https://jamiaturraza-security.up.railway.app/login"
-  },
-  {
-    title: "Majmua Aamaal",
-    tech: "Full-Stack Web Development",
-    description: "A comprehensive web application featuring a highly optimized UI/UX, providing users with an accessible collection of Islamic supplications and practices.",
-    video: "", 
-    typewriterText: "> Fetching supplication collection...\n> Loading UI/UX components...\n> Optimizing assets...\n> Majmua Aamaal deployed and live.",
-    github: "https://github.com/hasanmujtaba2006/khatme-qadirya.git",
-    demo: "https://khatme-qadirya.onrender.com/"
-  },
-  {
-    title: "Next-Gen Ebook Platform",
-    tech: "Concept / Startup Idea",
-    description: "A conceptual application designed to scan physical books and convert them into formatted ebooks, featuring a personal vault and self-publishing platform.",
-    video: "", 
-    typewriterText: "> Booting physical scanner module...\n> Processing page geometry...\n> OCR Text Extraction: 100%\n> Converting to .epub format...\n> Saved to Personal Vault.",
-    github: "https://github.com/hasanmujtaba2006/Scan2eBook-AI.git",
-    demo: "https://scan2e-book-ai.vercel.app/"
-  }
-];
-
 const App = () => {
+  const [projects, setProjects] = useState(() => {
+    try {
+      const saved = localStorage.getItem("hasan_portfolio_projects");
+      return saved ? JSON.parse(saved) : initialProjects;
+    } catch {
+      return initialProjects;
+    }
+  });
+
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+
+  // Keyboard shortcut: Ctrl+Shift+A or Cmd+Shift+A to open admin
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setIsAdminOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleSaveProjects = (updatedProjects) => {
+    setProjects(updatedProjects);
+    try {
+      localStorage.setItem("hasan_portfolio_projects", JSON.stringify(updatedProjects));
+    } catch (err) {
+      console.error("Failed to save to localStorage", err);
+    }
+  };
+
+  const handleResetProjects = () => {
+    setProjects(initialProjects);
+    localStorage.removeItem("hasan_portfolio_projects");
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 overflow-hidden font-sans scroll-smooth">
 
       {/* Navigation Bar */}
       <nav aria-label="Main Navigation" className="fixed top-0 w-full p-6 flex justify-between items-center z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 shadow-xs">
         <a href="#" aria-label="Hasan Mujtaba Home" className="text-2xl font-bold tracking-tighter text-emerald-600">HM.</a>
-        <div className="space-x-8 text-sm font-medium text-slate-600 hidden md:block">
-          <a href="#about" className="hover:text-emerald-600 transition-colors">About</a>
-          <a href="#projects" className="hover:text-emerald-600 transition-colors">Projects</a>
-          <a href="#contact" className="hover:text-emerald-600 transition-colors">Contact</a>
+        <div className="flex items-center space-x-6 text-sm font-medium text-slate-600">
+          <div className="space-x-8 hidden md:block">
+            <a href="#about" className="hover:text-emerald-600 transition-colors">About</a>
+            <a href="#projects" className="hover:text-emerald-600 transition-colors">Projects</a>
+            <a href="#contact" className="hover:text-emerald-600 transition-colors">Contact</a>
+          </div>
+          <button
+            onClick={() => setIsAdminOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 rounded-full transition-all shadow-2xs hover:shadow-xs"
+            title="Open Project Manager (or press Ctrl+Shift+A)"
+          >
+            <span>+</span>
+            <span>Add Project</span>
+          </button>
         </div>
       </nav>
 
@@ -197,16 +206,22 @@ const App = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="mb-16"
+            className="mb-16 flex flex-wrap items-center justify-between gap-4"
           >
             <h2 className="text-3xl md:text-4xl font-bold flex items-center gap-4 text-slate-900">
               <span className="text-emerald-600 text-2xl font-mono">02.</span> Featured Projects
               <div className="h-[1px] bg-slate-200 flex-grow ml-4 max-w-xs"></div>
             </h2>
+            <button
+              onClick={() => setIsAdminOpen(true)}
+              className="px-3.5 py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 rounded-lg transition-colors flex items-center gap-1.5 shadow-2xs"
+            >
+              <span>➕</span> Add Project
+            </button>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {myProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -315,8 +330,26 @@ const App = () => {
           <a href="https://t.me/Hasanmujtaba12" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on Telegram" className="text-slate-600 hover:text-emerald-600 transition-colors pointer-events-auto">Telegram</a>
           <a href="https://discordapp.com/users/hasan_0249" target="_blank" rel="noopener noreferrer" aria-label="Hasan Mujtaba on Discord" className="text-slate-600 hover:text-emerald-600 transition-colors pointer-events-auto">Discord</a>
         </div>
-        <p>Built by Hasan Mujtaba. &copy; {new Date().getFullYear()}</p>
+        <div className="flex items-center justify-center gap-3 text-xs text-slate-400">
+          <p>Built by Hasan Mujtaba. &copy; {new Date().getFullYear()}</p>
+          <span>•</span>
+          <button
+            onClick={() => setIsAdminOpen(true)}
+            className="text-slate-400 hover:text-emerald-600 transition-colors underline cursor-pointer"
+          >
+            Manage Projects (Admin)
+          </button>
+        </div>
       </footer>
+
+      {/* Admin Project Manager Modal */}
+      <AdminModal
+        isOpen={isAdminOpen}
+        onClose={() => setIsAdminOpen(false)}
+        projects={projects}
+        onSaveProjects={handleSaveProjects}
+        onResetProjects={handleResetProjects}
+      />
 
     </div>
   );

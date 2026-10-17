@@ -1,0 +1,42 @@
+[
+  {
+    "id": "iot-smart-parking",
+    "title": "IoT Smart Parking System",
+    "tech": "C++ / Microcontrollers / IoT Sensors",
+    "description": "A highly scalable smart parking solution integrating IoT sensors and microcontrollers to monitor and manage real-time parking space availability.",
+    "video": "/parking.mp4",
+    "typewriterText": "",
+    "github": "",
+    "demo": "#"
+  },
+  {
+    "id": "madarsa-gate-scanner",
+    "title": "Madarsa Gate Scanner",
+    "tech": "Python / Flask / Google Sheets API",
+    "description": "An automated entry logging system built with Python and Flask. It uses barcode scanning to instantly log student entries into a centralized Google Sheet.",
+    "video": "",
+    "typewriterText": "> Initializing entry logs...\n> Scanning student barcode...\n> ID Verified.\n> Access Granted.\n> Data pushed to Google Sheets successfully.",
+    "github": "https://github.com/gmqazi1036/jamiturraza_main_gate.git",
+    "demo": "https://jamiaturraza-security.up.railway.app/login"
+  },
+  {
+    "id": "majmua-aamaal",
+    "title": "Majmua Aamaal",
+    "tech": "Full-Stack Web Development",
+    "description": "A comprehensive web application featuring a highly optimized UI/UX, providing users with an accessible collection of Islamic supplications and practices.",
+    "video": "",
+    "typewriterText": "> Fetching supplication collection...\n> Loading UI/UX components...\n> Optimizing assets...\n> Majmua Aamaal deployed and live.",
+    "github": "https://github.com/hasanmujtaba2006/khatme-qadirya.git",
+    "demo": "https://khatme-qadirya.onrender.com/"
+  },
+  {
+    "id": "next-gen-ebook",
+    "title": "Next-Gen Ebook Platform",
+    "tech": "Concept / Startup Idea",
+    "description": "A conceptual application designed to scan physical books and convert them into formatted ebooks, featuring a personal vault and self-publishing platform.",
+    "video": "",
+    "typewriterText": "> Booting physical scanner module...\n> Processing page geometry...\n> OCR Text Extraction: 100%\n> Converting to .epub format...\n> Saved to Personal Vault.",
+    "github": "https://github.com/hasanmujtaba2006/Scan2eBook-AI.git",
+    "demo": "https://scan2e-book-ai.vercel.app/"
+  }
+]
